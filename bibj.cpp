@@ -15,6 +15,9 @@ struct t_gamePerso{
 };
 
 struct t_collection{
-
+    double maxMem;
+    int nbGames;
+    //still thinking about the array
+    int capaTab;
 
 };
