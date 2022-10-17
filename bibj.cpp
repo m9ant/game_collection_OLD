@@ -82,6 +82,13 @@ void add_game(t_collection & tcoll, t_game newGame){
 void delete_game(t_collection & tcoll, string gameTitle){
     int i = 0;
     while(tcoll.collection[i]->game->title != gameTitle){
-        
+        i++;
     }
+    tcoll.collection[i]->isInstalled = false;
+    
+    //switched indexes between the uninstalled game and the last installed game
+    t_gamePerso** ptr;
+    ptr = &(tcoll.collection[i]);
+    tcoll.collection[i] = tcoll.collection[tcoll.nbGames - 1];
+    tcoll.collection[tcoll.nbGames] = *ptr;
 }
