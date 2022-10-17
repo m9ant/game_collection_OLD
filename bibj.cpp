@@ -46,3 +46,42 @@ void delete_collection(t_collection & tcoll){
     tcoll.capaTab = 0;
 }
 
+void display_collection_stats(t_collection & tcoll){
+    char yesNo;
+    cout<<"Memoire maximale: "<<tcoll.maxMem<<" Go"<<endl;
+    cout<<"Nombre de jeux: "<<tcoll.nbGames<<endl;
+    cout<<"Nombre de jeux eux installe: "<<tcoll.maxMem<<endl;
+    cout<<"Afficher les jeux ? Y/N :"<<endl;
+    cin>>yesNo;
+    if(yesNo == 'Y' || yesNo == 'y'){
+        for(int i = 0; i < tcoll.nbGames; i++){
+            cout<<tcoll.collection[i]->game->title;
+        }
+    }
+}
+
+double total_memOccup(t_collection & tcoll){
+    double tot;
+
+    for(int i = 0; i < tcoll.nbGames; i++){
+        tot+= tcoll.collection[i]->game->memOccup;
+    }
+    
+    return tot;
+}
+
+void add_game(t_collection & tcoll, t_game newGame){
+    if((tcoll.maxMem - total_memOccup(tcoll)) >= newGame.memOccup){
+        tcoll.collection[tcoll.nbGames]->game = &newGame;
+        tcoll.nbGames=+1;
+    }else{
+        cout<<"pas assez d'espace de stockage"<<endl;
+    }
+}
+
+void delete_game(t_collection & tcoll, string gameTitle){
+    int i = 0;
+    while(tcoll.collection[i]->game->title != gameTitle){
+        
+    }
+}
